@@ -368,14 +368,22 @@ export default function AdminDashboard() {
                                 <Badge
                                   variant={
                                     activity.status.includes("✅")
-                                      ? "success"
+                                      ? "default"
                                       : activity.status.includes("⏳")
-                                      ? "outline"
+                                      ? "secondary"
                                       : activity.status.includes("⚠️")
-                                      ? "warning"
+                                      ? "outline"
                                       : "destructive"
                                   }
-                                  className="ml-auto"
+                                  className={
+                                    activity.status.includes("✅")
+                                      ? "bg-green-500/10 text-green-500 hover:bg-green-500/20"
+                                      : activity.status.includes("⏳")
+                                      ? "bg-yellow-500/10 text-yellow-500 hover:bg-yellow-500/20"
+                                      : activity.status.includes("⚠️")
+                                      ? "bg-orange-500/10 text-orange-500 hover:bg-orange-500/20"
+                                      : "bg-red-500/10 text-red-500 hover:bg-red-500/20"
+                                  }
                                 >
                                   {activity.status}
                                 </Badge>
@@ -563,14 +571,22 @@ export default function AdminDashboard() {
                               <Badge
                                 variant={
                                   activity.status.includes("✅")
-                                    ? "success"
+                                    ? "default"
                                     : activity.status.includes("⏳")
-                                    ? "outline"
+                                    ? "secondary"
                                     : activity.status.includes("⚠️")
-                                    ? "warning"
+                                    ? "outline"
                                     : "destructive"
                                 }
-                                className="ml-auto"
+                                className={
+                                  activity.status.includes("✅")
+                                    ? "bg-green-500/10 text-green-500 hover:bg-green-500/20"
+                                    : activity.status.includes("⏳")
+                                    ? "bg-yellow-500/10 text-yellow-500 hover:bg-yellow-500/20"
+                                    : activity.status.includes("⚠️")
+                                    ? "bg-orange-500/10 text-orange-500 hover:bg-orange-500/20"
+                                    : "bg-red-500/10 text-red-500 hover:bg-red-500/20"
+                                }
                               >
                                 {activity.status}
                               </Badge>
