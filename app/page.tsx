@@ -7,6 +7,7 @@ import {
   Clock,
   CheckCircle,
   CheckCircle2,
+  Loader2,
 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -62,8 +63,17 @@ export default function Home() {
                   onClick={handleStartVerification}
                   disabled={isNavigating}
                 >
-                  {isNavigating ? "Loading..." : "Start Verification"}
-                  {!isNavigating && <ArrowRight className="ml-2 h-5 w-5" />}
+                  {isNavigating ? (
+                    <>
+                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                      Loading...
+                    </>
+                  ) : (
+                    <>
+                      Start Verification
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </>
+                  )}
                 </Button>
               </motion.div>
 
@@ -121,8 +131,17 @@ export default function Home() {
                   onClick={handleStartVerification}
                   disabled={isNavigating}
                 >
-                  {isNavigating ? "Loading..." : "Start Verification"}
-                  {!isNavigating && <ArrowRight className="ml-2 h-5 w-5" />}
+                  {isNavigating ? (
+                    <>
+                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                      Loading...
+                    </>
+                  ) : (
+                    <>
+                      Start Verification
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </>
+                  )}
                 </Button>
               </motion.div>
             </motion.div>
