@@ -11,6 +11,7 @@ import {
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -20,6 +21,13 @@ export default function Home() {
     facial: false,
     final: false, // Add state for final verification
   });
+  const [isNavigating, setIsNavigating] = useState(false);
+  const router = useRouter();
+
+  const handleStartVerification = () => {
+    setIsNavigating(true);
+    router.push("/verification");
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -40,6 +48,24 @@ export default function Home() {
                 Fast, secure, and compliant identity verification for South
                 African betting platforms. Get verified in minutes, not days.
               </p>
+
+              {/* Mobile CTA Button - Only visible on mobile */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+                className="mt-8 sm:hidden"
+              >
+                <Button
+                  size="lg"
+                  className="px-8 py-6 text-lg"
+                  onClick={handleStartVerification}
+                  disabled={isNavigating}
+                >
+                  {isNavigating ? "Loading..." : "Start Verification"}
+                  {!isNavigating && <ArrowRight className="ml-2 h-5 w-5" />}
+                </Button>
+              </motion.div>
 
               {/* Features Grid */}
               <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-3">
@@ -82,19 +108,22 @@ export default function Home() {
                 </motion.div>
               </div>
 
-              {/* CTA Button */}
+              {/* Desktop CTA Button - Hidden on mobile */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
-                className="mt-12"
+                className="mt-12 hidden sm:block"
               >
-                <Link href="/verification">
-                  <Button size="lg" className="px-8 py-6 text-lg">
-                    Start Verification
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </Link>
+                <Button
+                  size="lg"
+                  className="px-8 py-6 text-lg"
+                  onClick={handleStartVerification}
+                  disabled={isNavigating}
+                >
+                  {isNavigating ? "Loading..." : "Start Verification"}
+                  {!isNavigating && <ArrowRight className="ml-2 h-5 w-5" />}
+                </Button>
               </motion.div>
             </motion.div>
           </div>
