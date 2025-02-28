@@ -1,11 +1,26 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Shield, Clock, CheckCircle } from "lucide-react";
+import {
+  ArrowRight,
+  Shield,
+  Clock,
+  CheckCircle,
+  CheckCircle2,
+} from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 export default function Home() {
+  const [currentStep, setCurrentStep] = useState(1);
+  const [stepsCompleted, setStepsCompleted] = useState({
+    identity: false,
+    document: false,
+    facial: false,
+    final: false, // Add state for final verification
+  });
+
   return (
     <div className="min-h-screen bg-background">
       <main>
@@ -22,10 +37,10 @@ export default function Home() {
                 Automated Account Verification
               </h1>
               <p className="mt-4 text-xl text-muted-foreground max-w-3xl mx-auto">
-                Fast, secure, and compliant identity verification for South African betting platforms.
-                Get verified in minutes, not days.
+                Fast, secure, and compliant identity verification for South
+                African betting platforms. Get verified in minutes, not days.
               </p>
-              
+
               {/* Features Grid */}
               <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-3">
                 <motion.div
@@ -35,7 +50,8 @@ export default function Home() {
                   <Shield className="h-12 w-12 text-primary mx-auto" />
                   <h3 className="mt-4 text-lg font-semibold">Secure Process</h3>
                   <p className="mt-2 text-muted-foreground">
-                    Bank-grade security protocols protecting your personal information
+                    Bank-grade security protocols protecting your personal
+                    information
                   </p>
                 </motion.div>
 
@@ -44,7 +60,9 @@ export default function Home() {
                   className="p-6 bg-card rounded-lg shadow-lg"
                 >
                   <Clock className="h-12 w-12 text-primary mx-auto" />
-                  <h3 className="mt-4 text-lg font-semibold">Quick Verification</h3>
+                  <h3 className="mt-4 text-lg font-semibold">
+                    Quick Verification
+                  </h3>
                   <p className="mt-2 text-muted-foreground">
                     Get verified in minutes with our automated system
                   </p>
@@ -55,7 +73,9 @@ export default function Home() {
                   className="p-6 bg-card rounded-lg shadow-lg"
                 >
                   <CheckCircle className="h-12 w-12 text-primary mx-auto" />
-                  <h3 className="mt-4 text-lg font-semibold">Fully Compliant</h3>
+                  <h3 className="mt-4 text-lg font-semibold">
+                    Fully Compliant
+                  </h3>
                   <p className="mt-2 text-muted-foreground">
                     Meets all South African regulatory requirements
                   </p>
