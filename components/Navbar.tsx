@@ -1,15 +1,30 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Shield, LayoutDashboard } from "lucide-react";
+import { Shield, LayoutDashboard, Loader2 } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 export default function Navbar() {
   const pathname = usePathname();
+  const router = useRouter();
   const isAdmin = pathname === "/admin";
+  const [isNavigating, setIsNavigating] = useState(false);
+
+  const handleAdminNavigation = () => {
+    if (isAdmin) return;
+
+    setIsNavigating(true);
+    router.push("/admin");
+
+    // Reset the state after a short delay to handle quick navigation back
+    setTimeout(() => {
+      setIsNavigating(false);
+    }, 1000);
+  };
 
   return (
     <motion.nav
@@ -25,12 +40,24 @@ export default function Navbar() {
           </Link>
 
           <div className="flex items-center space-x-4">
-            <Link href="/admin">
-              <Button variant={isAdmin ? "default" : "ghost"} size="sm">
-                <LayoutDashboard className="h-5 w-5 mr-2" />
-                Admin
-              </Button>
-            </Link>
+            <Button
+              variant={isAdmin ? "default" : "ghost"}
+              size="sm"
+              onClick={handleAdminNavigation}
+              disabled={isNavigating}
+            >
+              {isNavigating ? (
+                <>
+                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                  Loading
+                </>
+              ) : (
+                <>
+                  <LayoutDashboard className="h-5 w-5 mr-2" />
+                  Admin
+                </>
+              )}
+            </Button>
             <ThemeToggle />
           </div>
         </div>

@@ -8,7 +8,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "VerifyMe - Automated Account Verification",
-  description: "Fast and secure identity verification for South African betting platforms",
+  description:
+    "Fast and secure identity verification for South African betting platforms",
 };
 
 export default function RootLayout({
@@ -21,7 +22,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >

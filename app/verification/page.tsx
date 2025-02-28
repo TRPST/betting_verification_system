@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import ReactCanvasConfetti from "react-canvas-confetti";
+import { useEffect } from "react";
 import { VerificationProvider } from "./VerificationContext";
 import VerificationHeader from "./components/VerificationHeader";
 import ProgressSteps from "./components/ProgressSteps";
@@ -27,9 +28,17 @@ const ConfettiCanvas = () => {
 };
 
 export default function Verification() {
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <VerificationProvider>
-      <div className="min-h-screen bg-background py-8 pb-10 px-3 sm:py-12 sm:px-6 lg:px-8">
+      <div
+        className="min-h-screen bg-background py-8 px-3 sm:py-12 sm:px-6 lg:px-8"
+        style={{ paddingBottom: "300px" }}
+      >
         <ConfettiCanvas />
         <motion.div
           initial={{ opacity: 0, y: 20 }}
